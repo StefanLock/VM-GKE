@@ -23,3 +23,7 @@ provider "google" {
 module "gke" {
   source  = "./modules/gke"
 }
+
+module "data" {
+  source  = "./modules/bigdata"
+}
