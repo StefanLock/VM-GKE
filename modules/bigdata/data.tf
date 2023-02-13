@@ -1,15 +1,25 @@
 resource "google_bigquery_dataset" "dataset" {
-  dataset_id                  = "vmo2_tech_test"
-  location                    = "EU"
+  location                    = var.region
   default_table_expiration_ms = 3600000
 
+  ## loop through passed variables and assign the key as the dataset_id
+  for_each = var.bigquery_role_assignment
+  dataset_id  = each.key
+
   labels = {
-    env = "default"
+    project = var.project_id
+    env = "vm_bigquery_example"
   }
 }
 
 resource "google_bigquery_dataset_access" "access" {
-  dataset_id    = google_bigquery_dataset.dataset.dataset_id
-  role          = "OWNER"
-  user_by_email = google_service_account.bqowner.email
+  project = var.project_id
+  
+    ## Loop through variables and parse values for the access resource. 
+   for_each = var.bigquery_role_assignment
+    dataset_id    = each.key
+    role          = each.value.role
+    user_by_email = each.value.user
+
+    depends_on = [google_bigquery_dataset.dataset]
 }
