@@ -6,11 +6,22 @@
 2. [Install Terraform](https://developer.hashicorp.com/terraform/downloads)
 3. Install gcloud.
 
+Ensure the following APIs ar enabled:
+1. Compute
+2. BigQuery
+
 ## Getting started
 
-__STEP:__ `clone this repo`
-__RUN:__ `terraform init`
-__RUN:__ `terraform validate`
-__RUN:__ `terraform apply`
+__make validate__
 
-    
+running this will simply validate your terraform code and show you the plan.
+
+__make build__
+
+running this will validate but also apply your code autonomously.
+
+__make destroy__
+
+running this will destroy the infrastructure
+
+_WARNING:_  This is set to auto approve  

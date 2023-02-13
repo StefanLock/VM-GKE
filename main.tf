@@ -1,20 +1,17 @@
 # Configuration of providers
 terraform {
+  required_version = "1.3.8"
+
   required_providers {
     google = {
-      source = "hashicorp/google"
+      source  = "hashicorp/google"
       version = "4.52.0"
     }
   }
 }
 
 provider "google" {
-  project     = var.project_id
-}
-
-module "apis" {
-  source  = "./modules/api"
-  project_id = var.project_id
+  project = var.project_id
 }
 
 module "gke" {
@@ -33,17 +30,14 @@ module "gke" {
 }
 
 module "data" {
-  source  = "./modules/bigdata"
+  source = "./modules/bigdata"
 
   project_id = var.project_id
 
-  ## Changed to OWNER as the documentation reccomends that otherwise it will reflect a change each time.
-  ## https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset_access
-
   bigquery_role_assignment = {
-    vmo2_tech_test = {                    # dataset name 
-      role = "OWNER"  # gcp role
-      user = "StefanThomasLock@gmail.com"       # google email address of user
+    vmo2_tech_test = {
+      role = "READER"
+      user = "StefanThomasLock@gmail.com"
     }
   }
 }

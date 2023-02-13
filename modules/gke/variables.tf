@@ -11,48 +11,48 @@ variable "gcp_region" {
 }
 
 variable "gke_master_ip_cidr" {
-  type        = string
-  default     = "192.168.0.0/28"
+  type    = string
+  default = "192.168.0.0/28"
 }
 
 variable "service_account" {
-  type        = string
-  default     = "gkevmsvcacct"
+  type    = string
+  default = "gkevmsvcacct"
 }
 
 variable "cluster_name" {
-  type        = string
-  default     = "vm-gke-cluster"
+  type    = string
+  default = "vm-gke-cluster"
 }
 
 variable "node_pool_1_name" {
-  type        = string
-  default     = "nodepool1"
+  type    = string
+  default = "nodepool1"
 }
 
 variable "node_pool_2_name" {
-  type        = string
-  default     = "nodepool2"
+  type    = string
+  default = "nodepool2"
 }
 
 variable "node_pool_1_count" {
-  type        = number
-  default     = 1
+  type    = number
+  default = 1
 }
 
 variable "node_pool_2_min_count" {
-  type        = number
-  default     = 0
+  type    = number
+  default = 0
 }
 
 variable "node_pool_2_max_count" {
-  type        = number
-  default     = 3
+  type    = number
+  default = 3
 }
 
 ### NETWORK CONFIGURATION
 
 variable "vpc_name" {
-  type        = string
-  default     = "vm-gke-vpc"
+  type    = string
+  default = "vm-gke-vpc"
 }
